@@ -39,6 +39,10 @@ module.exports = function(grunt) {
 
     cssmin: {
         // Add filespec list here
+      // files: [
+      //   'public/*.css'
+      // ],
+      // options: {}
     },
 
     watch: {
