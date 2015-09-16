@@ -21,11 +21,32 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      //Added all code in uglify
+      options: {
+        mangle: {
+          except: ['jQuery', 'Backbone', 'underscore']
+        }
+      },
+      my_target: {
+        files: {
+          'dest/output.min.js': [
+            'public/client/*.js',
+            'app/**/*.js',
+            'lib/*.js',
+            '*.js',
+            'public/lib/**/*.js'
+          ]
+        }
+      }
     },
 
     jshint: {
       files: [
         // Add filespec list here
+        'public/client/*.js',
+        'app/**/*.js',
+        'lib/*.js',
+        '*.js'
       ],
       options: {
         force: 'true',
@@ -39,19 +60,31 @@ module.exports = function(grunt) {
 
     cssmin: {
         // Add filespec list here
-      // files: [
-      //   'public/*.css'
-      // ],
-      // options: {}
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'release/css',
+          src: ['public/*.css', '!*.min.css'],
+          dest: 'release/css',
+          ext: '.min.css'
+        }]
+      }
     },
 
     watch: {
       scripts: {
+        //Added filepaths from jshint
         files: [
+          'public/client/*.js',
+          'app/**/*.js',
+          'lib/*.js',
+          '*.js',
           'public/client/**/*.js',
           'public/lib/**/*.js',
         ],
         tasks: [
+        //Added jshint
+          'jshint',
           'concat',
           'uglify'
         ]
@@ -64,6 +97,7 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+        files: ['.deployment']
       }
     },
   });
@@ -99,11 +133,16 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'cssmin',
+    'jshint',
+    'concat',
+    'uglify'
   ]);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
       // add your production server task here
+      grunt.task.run([ 'build' ]);
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
@@ -111,6 +150,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
       // add your production server task here
+    'upload',
+    'shell:prodserver'
+      
   ]);
 
 
