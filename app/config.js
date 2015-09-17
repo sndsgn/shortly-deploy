@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var path = require('path');
 
-var db = mongoose.createConnection('mongodb: //' + '127.0.0.1' + '/' + 'shortlydb');
+var db = mongoose.createConnection('mongodb://127.0.0.1/shortlydb');
 
-var urlsSchema = mongoose.Schema({
+db.urlsSchema = mongoose.Schema({
       url: String,
       base_url: String,
       code: String,
@@ -32,7 +32,7 @@ var urlsSchema = mongoose.Schema({
 // });
 
 
-var usersSchema = mongoose.Schema({
+db.usersSchema = mongoose.Schema({
       username: String,
       password: String,
      timeStamp: {type: Date, default: Date.now}   
