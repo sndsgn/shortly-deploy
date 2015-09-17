@@ -24,7 +24,7 @@ module.exports = function(grunt) {
       //Added all code in uglify
       options: {
         mangle: {
-          except: ['jQuery', 'Backbone', 'underscore']
+          except: ['jQuery', 'Backbone', 'underscore', 'handlebars']
         }
       },
       my_target: {
@@ -44,7 +44,6 @@ module.exports = function(grunt) {
       files: [
         // Add filespec list here
         'public/client/*.js',
-        'app/**/*.js',
         'lib/*.js',
         '*.js'
       ],
@@ -76,7 +75,6 @@ module.exports = function(grunt) {
         //Added filepaths from jshint
         files: [
           'public/client/*.js',
-          'app/**/*.js',
           'lib/*.js',
           '*.js',
           'public/client/**/*.js',
