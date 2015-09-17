@@ -150,7 +150,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
       // add your production server task here
-    'upload',
+    'upload:prod',
     'shell:prodserver'
       
   ]);
