@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
 
-
+// mongoose.connect('mongodb://localhost/test');
 
 var User = mongoose.model('User', db.usersSchema);
 

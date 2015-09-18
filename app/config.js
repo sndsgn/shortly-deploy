@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var path = require('path');
 
-var db = mongoose.createConnection('mongodb://127.0.0.1/shortlydb');
+// mongoose.connect('mongodb://localhost/test');
+var db = mongoose.createConnection('mongodb://127.0.0.1/test');
 
 db.urlsSchema = mongoose.Schema({
       url: String,

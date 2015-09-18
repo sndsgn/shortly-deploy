@@ -2,6 +2,7 @@ var db = require('../config');
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 
+mongoose.connect('mongodb://localhost/test');
 
 var Link = mongoose.model('Link', db.urlsSchema);
 
